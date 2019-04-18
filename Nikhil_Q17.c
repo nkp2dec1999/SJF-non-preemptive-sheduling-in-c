@@ -8,9 +8,9 @@ printf("Enter the number of processes:\n");
 scanf("%d",&n);
 for(i=0;i<n;i++)
 {
-	printf("Arrival time of p%d process :\n",i+1);
+	printf("Arrival time of process[%d] :\n",i+1);
 	scanf("%d",&Arival_time[i]);
-	printf("Burst time of P%d process :\n",i+1);
+	printf("Burst time of process[%d] :\n",i+1);
 	Burst_time[i]=2*Arival_time[i];
 	printf("%d\n",Burst_time[i]);
 }
@@ -32,8 +32,8 @@ for(i=0;i<n;i++)
 		}
 	}
 }
-wt[0]=0;
-sum=1;
+wt[0]=0;//at start waiting time should be zero
+//sum=1;
 for(i=1;i<n;i++)
 {
 	sum=sum+Burst_time[i-1];
@@ -48,22 +48,31 @@ for(i=0;i<n;i++)
 	Sum_TAT=Sum_TAT+TAT[i];
 }
 ATAT=(Sum_TAT/n);
-printf("\n\t\t\t\t\t\t     :-RESULT TABLE :-");
+
+
+printf("\n\t\t\t\t\t\t       RESULT TABLE   ");
+printf("\n\t\t\t\t\t      Shortest Job First,Non-Preemption    ");
 printf("\n");
-printf("\n\t\t\t\t\t-----------------------------------------");
-printf("\n\t\t\t\t\tPROCESS\t| BT\t| AT\t| WT\t| TAT\t|");
-printf("\n\t\t\t\t\t-----------------------------------------");
+printf("\n\t\t\t\t\t-------------------------------------------------");
+printf("\n\t\t\t\t\t|   PROCESS     |  BT   |  AT   |  WT   |  TAT  |");
+printf("\n\t\t\t\t\t-------------------------------------------------");
 for(i=0;i<n;i++)
 {
-	printf("\n\t\t\t\t\t| p%d\t|  %d\t|  %d\t|  %d\t|  %d\t|",p[i],Burst_time[i],Arival_time[i],wt[i],TAT[i]);
+	printf("\n\t\t\t\t\t| process[%d]\t|  %d\t|  %d\t|  %d\t|  %d\t|",p[i],Burst_time[i],Arival_time[i],wt[i],TAT[i]);
 }
-printf("\n\t\t\t\t\t-----------------------------------------\n");
+printf("\n\t\t\t\t\t-------------------------------------------------\n");
+printf("\n ..Order of execution according to Gantt chart..\n");
+
+printf("\n");
+
+printf("\t\t\t\t\t--------------\n\t\t\t\t\t");
+
 for(i=0;i<n;i++)
 {
-printf("\np%d",p[i]);
+printf("| Process[%d] |\n\t\t\t\t\t",p[i]);
 }
-printf("\n\n AVERAGE TURNAROUND TIME: %f",AWT);
+printf("--------------");
+printf("\n\n\n\n AVERAGE TURNAROUND TIME: %f",AWT);
 printf("\n AVERAGE TURN-AROUND-TIME : %f\n",ATAT);
 
 }
-
